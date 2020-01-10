@@ -70,6 +70,14 @@ class AgendaFlatList extends Component {
     return i;
   }
 
+  componentDidMount() {
+    const {date} = this.props.context;
+    if (date !== this.props.data[0][this.props.dataDateProperty]) {
+      const sectionIndex = this.getSectionIndex(date);
+      this.scrollToSection(sectionIndex);
+    }
+  }
+
   componentDidUpdate(prevProps) {
     const {updateSource, date} = this.props.context;
     if (date !== prevProps.context.date) {
