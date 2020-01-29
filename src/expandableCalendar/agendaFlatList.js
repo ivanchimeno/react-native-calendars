@@ -71,8 +71,14 @@ class AgendaFlatList extends Component {
   }
 
   componentDidMount() {
+    if (this.props.data.length === 0) {
+      return;
+    }
+
     const {date} = this.props.context;
-    if (date !== this.props.data[0][this.props.dataDateProperty]) {
+    const firstItemDate = this.props.data[0][this.props.dataDateProperty];
+
+    if (date !== firstItemDate) {
       const sectionIndex = this.getSectionIndex(date);
       setTimeout(() => {
         this.scrollToSection(sectionIndex);
